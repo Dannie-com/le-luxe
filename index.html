@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LE LUXE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="./images/leopard 2 piece.jpg" type="image/x-icon">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  
+</head>
+<body>
+  
+  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-cream shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">LE LUXE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="cart.html">Cart 🛒</a></li>
+        </ul>
+
+        <form class="d-flex my-3 ms-auto" onsubmit="searchProducts(event)" style="max-width: 250px;">
+          <input class="form-control form-control-sm me-2" type="search" placeholder="Search products" id="searchInput">
+          <button class="btn btn-sm btn-outline-primary" type="submit">Search</button>
+        </form>
+
+        <div class="dropdown">
+          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Filter by Category
+          </button>
+          <ul class="dropdown dropdown-menu">
+            <li><a class="dropdown-item" href="#" onclick="filterCategory('all')">All</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCategory('shoes')">Shoes</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCategory('clothes')">Clothes</a></li>
+            <li><a class="dropdown-item" href="#" onclick="filterCategory('accessories')">Accessories</a></li>
+          </ul>
+        </div>
+
+        <div class="d-flex ms-2">
+          <a href="login.html" style="font-size: 0.8rem;"><button class="btn btn-sm btn-outline-primary me-2 py-2 px-3">Login</button></a>
+          <a href="signup.html" style="font-size: 0.8rem;"><button class="btn btn-sm btn-outline-primary me-2 py-2 px-3">Sign Up</button></a>    
+          <!-- View Wishlist Button -->
+          <button class="btn btn-sm btn-outline-danger" onclick="openWishlist()">Wishlist ❤️</button>
+        </div>
+      </div>
+      <!-- Hamburger icon using 3 lines -->
+      <!-- <div id="hamburger" onclick="toggleMenu()" class="ms-auto" style="cursor: pointer; font-size: 24px;">
+        &#9776;
+      </div> -->
+    </div>    
+  </nav>
+
+<!-- Hero Section -->
+<section class="text-center py-5 bg-light">
+  <h1 class="display-4">Shop with Elegance</h1>
+  <p class="lead">Discover hand-picked fashion and lifestyle items</p>
+</section>
+
+
+
+
+<!-- Product Grid -->
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- Product 1 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="001">
+        <img src="./images/leopard 2 piece.jpg" class="card-img-top" alt="LEOPARD PRINT 2 PIECE">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">LEOPARD PRINT 2 PIECE</h5>
+          <p class="card-text">₦50,000</p>
+          <button class="btn btn-dark" onclick="addToCart('LEOPARD PRINT 2 PIECE', 50000)">Add to Cart</button>
+          <!-- Place this inside .card -->
+<button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="001">
+  ❤️
+</button>
+
+        </div>
+      </div>
+    </div>
+   
+
+    <!-- Product 2 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="002 ">
+        <img src="./images/orange beach wear.png" class="card-img-top" alt="ORANGE SPICE">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">ORANGE SPICE</h5>
+          <p class="card-text">₦25,500</p>
+          <button class="btn btn-dark" onclick="addToCart('ORANGE SPICE', 25500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="002">
+  ❤️
+        </div>
+      </div>
+    </div>
+    <!-- Product 3 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="003">
+        <img src="./images/Women's Summer Vacation Backless Halter Neck Allover Print Dress.jpeg" class="card-img-top" alt="HALTER NECK">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">PINK FLOWER</h5>
+          <p class="card-text">₦36,000</p>
+          <button class="btn btn-dark" onclick="addToCart('PINK FLOWER', 36000)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="003">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="004">
+        <img src="./images/popwave.jpg" class="card-img-top" alt="popwave tee">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">POPWAVE TEE</h5>
+          <p class="card-text">₦45,500</p>
+          <button class="btn btn-dark" onclick="addToCart('POPWAVE TEE', 45500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="004">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="005">
+        <img src="./images/stussy.jpg" class="card-img-top" alt="STUSSY TEE">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">STUSSY TEE</h5>
+          <p class="card-text">₦50,500</p>
+          <button class="btn btn-dark" onclick="addToCart('STUSSY TEE', 50500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="005">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="006">
+        <img src="./images/mowalola.jpg" class="card-img-top" alt="MOWALOLA TEE">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">MOWALOLA TEE</h5>
+          <p class="card-text">₦70,500</p>
+          <button class="btn btn-dark" onclick="addToCart('MOWALOLA TEE', 70500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="006">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+     <!-- Product 7 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="007">
+        <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT1X5nPu_afd31aj_FRPz87exKYZavY1hTVIotKEYc47e-3UEzRKVKuuZsgW01hUxKaWXpYHTZPx2B3RyRYF2gx9Kwkmn9IFFh-vZysXlUNBlseQg5BB0CW2FHX&usqp=CAc" class="card-img-top" alt="RED FIRE">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">RED FIRE</h5>
+          <p class="card-text">45,500</p>
+          <button class="btn btn-dark" onclick="addToCart('RED FIRE', 45500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="007">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="007">
+        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQZyimBPCK9p3EbYDGV1uKUkhIaJgnTc0iwUuCKJa2OKDY8rvp_geMZhRL5nb-bf3vhNHCMkPp8Lr_3Co4ZU_Iv2dZKYXlZwztikYoieSBpmPNPM6o&usqp=CAc" class="card-img-top" alt="Y2K SHIRT">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">Y2K SHIRT</h5>
+          <p class="card-text">₦40,000</p>
+          <button class="btn btn-dark" onclick="addToCart('Y2K SHIRT', 40000)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="008">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 9 -->
+    <div class="col-md-4">
+      <div class="card shadow-sm product-card" data-product-id="007">
+        <img src="https://img.kwcdn.com/product/fancy/26dc1fa2-a39f-496a-a761-d4b84961c05e.jpg?imageView2/2/w/800/q/70/format/webp" class="card-img-top" alt="NOIR BLANC">
+        <div class="card-body text-center">
+          <h5 class="card-title product-name">NOIR BLANC</h5>
+          <p class="card-text">₦45,500</p>
+          <button class="btn btn-dark" onclick="addToCart('NOIR BLANC', 50500)">Add to Cart</button>
+          <button class="btn wishlist-btn position-absolute top-0 end-0 m-2" data-product-id="009">
+  ❤️
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center py-4 bg-dark text-white">
+  &copy; 2025 LE LUXE. All rights reserved.
+</footer>
+
+  <!-- Product Detail Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Product Name</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-6">
+            <img id="modalProductImage" src="" class="img-fluid mb-2" alt="Product Image">
+            <div id="extraImages" class="d-flex flex-wrap gap-2"></div>
+          </div>
+          <div class="col-md-6">
+            <h4 id="modalProductPrice" class="text-success"></h4>
+            <p id="modalProductDescription"></p>
+
+            <button id="modalAddToCart" class="btn btn-primary mt-3">Add to Cart</button>
+
+            <hr>
+            <h5>Ratings & Reviews</h5>
+            <div id="productReviews" class="mb-2"></div>
+            <form id="reviewForm">
+              <input type="number" id="reviewRating" class="form-control mb-2" placeholder="Rating (1-5)" min="1" max="5" required>
+              <textarea id="reviewComment" class="form-control mb-2" placeholder="Write a comment..." required></textarea>
+              <button type="submit" class="btn btn-outline-primary btn-sm">Submit Review</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="js/script.js"></script>
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+ 
+
+</body>
+</html>
+
+

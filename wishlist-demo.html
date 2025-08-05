@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist Demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .wishlist-btn {
+      background: white;
+      border: none;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <div class="container py-4">
+    <h1 class="mb-4">🛍 My Product Store</h1>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-sm btn-outline-danger" onclick="openWishlist()">❤️ View Wishlist</button>
+    </div>
+    <div id="productList" class="row mt-3">
+      <!-- Products will be displayed here -->
+    </div>
+  </div>
+
+  <!-- Wishlist Modal -->
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="wishlistModalLabel">My Wishlist</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="wishlistItems" class="row g-3">
+            <!-- Wishlist items will be shown here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Your JavaScript -->
+  <script>
+    const products = [
+      {
+        id: "001",
+        name: "Red Heels",
+        price: 15000,
+        image: "https://via.placeholder.com/300x200?text=Red+Heels",
+        stock: 3
+      },
+      {
+        id: "002",
+        name: "Blue Sneakers",
+        price: 12000,
+        image: "https://via.placeholder.com/300x200?text=Blue+Sneakers",
+        stock: 0
+      },
+      {
+        id: "003",
+        name: "Classic Sandals",
+        price: 9500,
+        image: "https://via.placeholder.com/300x200?text=Sandals",
+        stock: 5
+      }
+    ];
+
+    function renderProducts() {
+      const container = document.getElementById("productList");
+      products.forEach(product => {
+        const col = document.createElement("div");
+        col.className = "col-md-4 mb-4";
+
+        col.innerHTML = `
+          <div class="card shadow-sm h-100">
+            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text text-success">₦${product.price}</p>
+              <button class="btn btn-outline-secondary" onclick="addToWishlist('${product.id}')">❤️ Add to Wishlist</button>
+            </div>
+          </div>
+        `;
+        container.appendChild(col);
+      });
+    }
+
+    function addToWishlist(id) {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      if (!wishlist.includes(id)) {
+        wishlist.push(id);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        alert("Added to wishlist!");
+      } else {
+        alert("Already in wishlist!");
+      }
+    }
+
+    function openWishlist() {
+      const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const wishlistItems = document.getElementById("wishlistItems");
+      wishlistItems.innerHTML = "";
+
+      const wishlistProducts = products.filter(product =>
+        wishlist.includes(product.id)
+      );
+
+      if (wishlistProducts.length === 0) {
+        wishlistItems.innerHTML = "<p>No items in your wishlist.</p>";
+      } else {
+        wishlistProducts.forEach(product => {
+          const item = document.createElement("div");
+          item.className = "col-md-4";
+          item.innerHTML = `
+            <div class="card h-100 shadow-sm">
+              <img src="${product.image}" class="card-img-top" alt="${product.name}">
+              <div class="card-body">
+                <h5 class="card-title">${product.name}</h5>
+                <p class="card-text text-success">₦${product.price}</p>
+                <button class="btn btn-primary" onclick="alert('Add to Cart: ${product.name}')">Add to Cart</button>
+              </div>
+            </div>
+          `;
+          wishlistItems.appendChild(item);
+        });
+      }
+
+      const modal = new bootstrap.Modal(document.getElementById('wishlistModal'));
+      modal.show();
+    }
+
+    // Load products on page load
+    document.addEventListener("DOMContentLoaded", renderProducts);
+  </script>
+</body>
+</html>
